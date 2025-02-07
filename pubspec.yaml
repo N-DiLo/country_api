@@ -79,12 +79,12 @@ flutter:
   fonts:
     - family: Axiforma
       fonts:
-        - asset: assets/fonts/Axiforma Regular.ttf
-        - asset: assets/fonts/Axiforma SemiBold.ttf
-        - asset: assets/fonts/Axiforma Bold.ttf
+        - asset: assets/fonts/Axiforma-Regular.ttf
+        - asset: assets/fonts/Axiforma-SemiBold.ttf
+        - asset: assets/fonts/Axiforma-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Axiforma Light.ttf
-        - asset: fonts/Axiforma Italic.ttf
+        - asset: assets/fonts/Axiforma-Light.ttf
+        - asset: assets/fonts/Axiforma-Italic.ttf
           style: italic
   #   - family: Trajan Pro
   #     fonts:

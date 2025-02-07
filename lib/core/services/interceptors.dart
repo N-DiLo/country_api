@@ -3,7 +3,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 class CountryInterceptors {
   static Future<Options> dioOptions() async {
-    final token = String.fromEnvironment('API_KEY');
+    const String token = String.fromEnvironment('API_KEY');
     bool validToken = token.isNotEmpty && !JwtDecoder.isExpired(token);
 
     return Options(headers: {
