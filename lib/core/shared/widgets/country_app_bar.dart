@@ -66,8 +66,8 @@ class CountryAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: showDivider
           ? PreferredSize(
               preferredSize: Size(double.infinity, dividerHeight),
-              child: const Divider(
-                color: greyColor,
+              child: Divider(
+                color: greyColor[100],
               ),
             )
           : null,

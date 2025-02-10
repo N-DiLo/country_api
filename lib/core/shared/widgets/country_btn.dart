@@ -62,7 +62,7 @@ class CountryBtn extends StatelessWidget {
               )
             : outline
                 ? BoxDecoration(
-                    color: greyColor,
+                    color: greyColor[100],
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: transparent, width: 1),
                   )

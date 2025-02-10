@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.5.1
   dio: ^5.8.0+1
   toastification: ^2.3.0
+  skeletonizer: ^1.4.3
 
 dev_dependencies:
   flutter_test:

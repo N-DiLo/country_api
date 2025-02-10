@@ -96,7 +96,7 @@ class CountryNotifier extends StateNotifier<CountryState> {
         message: 'Error occurred: ${e.toString()}',
       );
       log('Error fetching data: $e');
-      // throw Exception('Error occurred: $e');
+      throw Exception('Error occurred: $e');
     }
   }
 }

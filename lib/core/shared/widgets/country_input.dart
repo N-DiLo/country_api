@@ -67,10 +67,11 @@ class CountryInput extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 color: textColor,
               ),
+          textAlign: TextAlign.center,
           decoration: InputDecoration(
             constraints: constraints,
             filled: true,
-            fillColor: isDark ? whiteColor : greyColor,
+            fillColor: isDark ? whiteColor : greyColor[50],
             contentPadding: const EdgeInsets.all(14),
             prefixIcon: leading,
             prefixIconConstraints: readOnly
@@ -86,8 +87,9 @@ class CountryInput extends StatelessWidget {
                   )
                 : null,
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide.none,
+            ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
             ),
@@ -106,7 +108,7 @@ class CountryInput extends StatelessWidget {
             hintText: hintText ?? 'Enter a hint text',
             hintStyle: hintStyle ??
                 bodyText.copyWith(
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w300,
                     color: const Color(0xffACACAC)),
           ),
         ),
