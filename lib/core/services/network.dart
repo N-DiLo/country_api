@@ -1,14 +1,24 @@
 import 'dart:developer';
 
 import 'package:country_api/core/services/country_error_handlers.dart';
-import 'package:country_api/core/services/interceptors.dart';
 import 'package:dio/dio.dart';
 
 const String baseURL = String.fromEnvironment('BASE_URL');
+const String token = String.fromEnvironment('API_KEY');
+bool validToken = token != '' && token.isNotEmpty;
 
 class CountryNetwork {
   static const int serverTIMEOUT = 60;
   static const duration = Duration(seconds: serverTIMEOUT * 10000);
+
+  static Future<Options> _getDioOptions() async {
+    final headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      if (validToken) 'Authorization': 'Bearer $token',
+    };
+    return Options(headers: headers);
+  }
 
   static final Dio dio = Dio(
     BaseOptions(
@@ -18,7 +28,7 @@ class CountryNetwork {
     ),
   )..interceptors.addAll([
       InterceptorsWrapper(onRequest: (options, handler) async {
-        final dioOptions = await CountryInterceptors.dioOptions();
+        final dioOptions = await _getDioOptions();
         options.headers.addAll(dioOptions.headers ?? {});
         return handler.next(options);
       }, onError: (error, handler) async {
@@ -34,7 +44,7 @@ class CountryNetwork {
     required String endpoint,
   }) async {
     try {
-      final dioOptions = await CountryInterceptors.dioOptions();
+      final dioOptions = await _getDioOptions();
       final response = await dio.get(
         endpoint,
         options: Options(
