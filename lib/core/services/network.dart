@@ -15,7 +15,7 @@ class CountryNetwork {
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      if (validToken) 'Authorization': 'Bearer $token',
+      // if (validToken) 'Authorization': 'Bearer $token',
     };
     return Options(headers: headers);
   }

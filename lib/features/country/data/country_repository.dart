@@ -7,11 +7,15 @@ class CountryRepository {
   CountryRepository(this.dio);
 
   Future<Map<String, dynamic>?> getCountries({int? page}) async {
-    final endpoint = '/countries?page=$page';
+    // final endpoint = '/countries?page=$page';
+    final endpoint = '/all';
 
     try {
       final response = await CountryNetwork.get(endpoint: endpoint);
       if (response != null) {
+        if (response is List) {
+          return {'countries': response};
+        }
         return response;
       }
       return null;

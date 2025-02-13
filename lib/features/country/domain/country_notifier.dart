@@ -9,7 +9,7 @@ class CountryState {
   final bool status;
   final bool isNextPage;
   final String message;
-  final CountryModel? countryModel;
+  final List<CountryModel>? countryModel;
 
   CountryState({
     required this.status,
@@ -24,7 +24,7 @@ class CountryState {
     bool? isNextPage,
     String? message,
     bool? status,
-    CountryModel? countryModel,
+    List<CountryModel>? countryModel,
   }) =>
       CountryState(
         status: status ?? this.status,
@@ -57,29 +57,34 @@ class CountryNotifier extends StateNotifier<CountryState> {
     try {
       final results = await countryService.getData(page: page);
       if (results != null && results.isNotEmpty) {
-        final foundCountries = CountryModel.fromJson(results);
+        List<CountryModel> countries = [];
 
-        if (page == 1) {
-          state = state.copyWith(
-            countryModel: foundCountries,
-            isLoading: false,
-            status: true,
-            message: 'Country data fetched',
-          );
-        } else {
-          final oldCountriesFound = state.countryModel?.data ?? [];
-          final newFoundCountries = foundCountries.data ?? [];
-
-          state = state.copyWith(
-            isNextPage: false,
-            countryModel: CountryModel(
-              data: [
-                ...oldCountriesFound,
-                ...newFoundCountries,
-              ],
-            ),
-          );
+        for (var countryList in results['countries']) {
+          countries.add(CountryModel.fromJson(countryList));
         }
+        // final foundCountries = CountryModel.fromJson(results);
+
+        // if (page == 1) {
+        //   state = state.copyWith(
+        //     countryModel: foundCountries,
+        //     isLoading: false,
+        //     status: true,
+        //     message: 'Country data fetched',
+        //   );
+        // } else {
+        //   final oldCountriesFound = state.countryModel?.data ?? [];
+        //   final newFoundCountries = foundCountries.data ?? [];
+
+        //   state = state.copyWith(
+        //     isNextPage: false,
+        //     countryModel: CountryModel(
+        //       data: [
+        //         ...oldCountriesFound,
+        //         ...newFoundCountries,
+        //       ],
+        //     ),
+        //   );
+        // }
       } else {
         state = state.copyWith(
           isLoading: false,

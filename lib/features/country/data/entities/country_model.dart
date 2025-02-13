@@ -1,25 +1,153 @@
 import 'dart:convert';
 
 class CountryModel {
-  final List<Country>? data;
-  final Links? links;
-  final Meta? meta;
+  final Name? name;
+  final List<String>? tld;
+  final String? cca2;
+  final String? ccn3;
+  final String? cca3;
+  final bool? independent;
+  final String? status;
+  final bool? unMember;
+  final Map<String, Currency>? currencies;
+  final Idd? idd;
+  final List<String>? capital;
+  final List<String>? altSpellings;
+  final String? region;
+  final Map<String, String>? languages;
+  final Map<String, Translation>? translations;
+  final List<double>? latlng;
+  final bool? landlocked;
+  final double? area;
+  final Demonyms? demonyms;
+  final String? flag;
+  final Maps? maps;
+  final int? population;
+  final Car? car;
+  final List<String>? timezones;
+  final List<String>? continents;
+  final Flags? flags;
+  final CoatOfArms? coatOfArms;
+  final String? startOfWeek;
+  final CapitalInfo? capitalInfo;
+  final String? cioc;
+  final String? subregion;
+  final String? fifa;
+  final List<String>? borders;
+  final Map<String, double>? gini;
+  final PostalCode? postalCode;
 
   CountryModel({
-    this.data,
-    this.links,
-    this.meta,
+    this.name,
+    this.tld,
+    this.cca2,
+    this.ccn3,
+    this.cca3,
+    this.independent,
+    this.status,
+    this.unMember,
+    this.currencies,
+    this.idd,
+    this.capital,
+    this.altSpellings,
+    this.region,
+    this.languages,
+    this.translations,
+    this.latlng,
+    this.landlocked,
+    this.area,
+    this.demonyms,
+    this.flag,
+    this.maps,
+    this.population,
+    this.car,
+    this.timezones,
+    this.continents,
+    this.flags,
+    this.coatOfArms,
+    this.startOfWeek,
+    this.capitalInfo,
+    this.cioc,
+    this.subregion,
+    this.fifa,
+    this.borders,
+    this.gini,
+    this.postalCode,
   });
 
   CountryModel copyWith({
-    List<Country>? data,
-    Links? links,
-    Meta? meta,
+    Name? name,
+    List<String>? tld,
+    String? cca2,
+    String? ccn3,
+    String? cca3,
+    bool? independent,
+    String? status,
+    bool? unMember,
+    Map<String, Currency>? currencies,
+    Idd? idd,
+    List<String>? capital,
+    List<String>? altSpellings,
+    String? region,
+    Map<String, String>? languages,
+    Map<String, Translation>? translations,
+    List<double>? latlng,
+    bool? landlocked,
+    double? area,
+    Demonyms? demonyms,
+    String? flag,
+    Maps? maps,
+    int? population,
+    Car? car,
+    List<String>? timezones,
+    List<String>? continents,
+    Flags? flags,
+    CoatOfArms? coatOfArms,
+    String? startOfWeek,
+    CapitalInfo? capitalInfo,
+    String? cioc,
+    String? subregion,
+    String? fifa,
+    List<String>? borders,
+    Map<String, double>? gini,
+    PostalCode? postalCode,
   }) =>
       CountryModel(
-        data: data ?? this.data,
-        links: links ?? this.links,
-        meta: meta ?? this.meta,
+        name: name ?? this.name,
+        tld: tld ?? this.tld,
+        cca2: cca2 ?? this.cca2,
+        ccn3: ccn3 ?? this.ccn3,
+        cca3: cca3 ?? this.cca3,
+        independent: independent ?? this.independent,
+        status: status ?? this.status,
+        unMember: unMember ?? this.unMember,
+        currencies: currencies ?? this.currencies,
+        idd: idd ?? this.idd,
+        capital: capital ?? this.capital,
+        altSpellings: altSpellings ?? this.altSpellings,
+        region: region ?? this.region,
+        languages: languages ?? this.languages,
+        translations: translations ?? this.translations,
+        latlng: latlng ?? this.latlng,
+        landlocked: landlocked ?? this.landlocked,
+        area: area ?? this.area,
+        demonyms: demonyms ?? this.demonyms,
+        flag: flag ?? this.flag,
+        maps: maps ?? this.maps,
+        population: population ?? this.population,
+        car: car ?? this.car,
+        timezones: timezones ?? this.timezones,
+        continents: continents ?? this.continents,
+        flags: flags ?? this.flags,
+        coatOfArms: coatOfArms ?? this.coatOfArms,
+        startOfWeek: startOfWeek ?? this.startOfWeek,
+        capitalInfo: capitalInfo ?? this.capitalInfo,
+        cioc: cioc ?? this.cioc,
+        subregion: subregion ?? this.subregion,
+        fifa: fifa ?? this.fifa,
+        borders: borders ?? this.borders,
+        gini: gini ?? this.gini,
+        postalCode: postalCode ?? this.postalCode,
       );
 
   factory CountryModel.fromRawJson(String str) =>
@@ -28,429 +156,534 @@ class CountryModel {
   String toRawJson() => json.encode(toJson());
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
-        data: json["data"] == null
+        name: json["name"] == null ? null : Name.fromJson(json["name"]),
+        tld: json["tld"] == null
             ? []
-            : List<Country>.from(json["data"]!.map((x) => Country.fromJson(x))),
-        links: json["links"] == null ? null : Links.fromJson(json["links"]),
-        meta: json["meta"] == null ? null : Meta.fromJson(json["meta"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "data": data == null
+            : List<String>.from(json["tld"]!.map((x) => x)),
+        cca2: json["cca2"],
+        ccn3: json["ccn3"],
+        cca3: json["cca3"],
+        independent: json["independent"],
+        status: json["status"],
+        unMember: json["unMember"],
+        currencies: Map.from(json["currencies"]!)
+            .map((k, v) => MapEntry<String, Currency>(k, Currency.fromJson(v))),
+        idd: json["idd"] == null ? null : Idd.fromJson(json["idd"]),
+        capital: json["capital"] == null
             ? []
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-        "links": links?.toJson(),
-        "meta": meta?.toJson(),
-      };
-}
-
-class Country {
-  final String? name;
-  final String? fullName;
-  final String? capital;
-  final String? iso2;
-  final String? iso3;
-  final Covid19? covid19;
-  final CurrentPresident? currentPresident;
-  final String? currency;
-  final String? phoneCode;
-  final String? continent;
-  final String? description;
-  final String? size;
-  final DateTime? independenceDate;
-  final String? population;
-  final CountryHref? href;
-
-  Country({
-    this.name,
-    this.fullName,
-    this.capital,
-    this.iso2,
-    this.iso3,
-    this.covid19,
-    this.currentPresident,
-    this.currency,
-    this.phoneCode,
-    this.continent,
-    this.description,
-    this.size,
-    this.independenceDate,
-    this.population,
-    this.href,
-  });
-
-  Country copyWith({
-    String? name,
-    String? fullName,
-    String? capital,
-    String? iso2,
-    String? iso3,
-    Covid19? covid19,
-    CurrentPresident? currentPresident,
-    String? currency,
-    String? phoneCode,
-    String? continent,
-    String? description,
-    String? size,
-    DateTime? independenceDate,
-    String? population,
-    CountryHref? href,
-  }) =>
-      Country(
-        name: name ?? this.name,
-        fullName: fullName ?? this.fullName,
-        capital: capital ?? this.capital,
-        iso2: iso2 ?? this.iso2,
-        iso3: iso3 ?? this.iso3,
-        covid19: covid19 ?? this.covid19,
-        currentPresident: currentPresident ?? this.currentPresident,
-        currency: currency ?? this.currency,
-        phoneCode: phoneCode ?? this.phoneCode,
-        continent: continent ?? this.continent,
-        description: description ?? this.description,
-        size: size ?? this.size,
-        independenceDate: independenceDate ?? this.independenceDate,
-        population: population ?? this.population,
-        href: href ?? this.href,
-      );
-
-  factory Country.fromRawJson(String str) => Country.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory Country.fromJson(Map<String, dynamic> json) => Country(
-        name: json["name"],
-        fullName: json["full_name"],
-        capital: json["capital"],
-        iso2: json["iso2"],
-        iso3: json["iso3"],
-        covid19:
-            json["covid19"] == null ? null : Covid19.fromJson(json["covid19"]),
-        currentPresident: json["current_president"] == null
+            : List<String>.from(json["capital"]!.map((x) => x)),
+        altSpellings: json["altSpellings"] == null
+            ? []
+            : List<String>.from(json["altSpellings"]!.map((x) => x)),
+        region: json["region"],
+        languages: Map.from(json["languages"]!)
+            .map((k, v) => MapEntry<String, String>(k, v)),
+        translations: Map.from(json["translations"]!).map((k, v) =>
+            MapEntry<String, Translation>(k, Translation.fromJson(v))),
+        latlng: json["latlng"] == null
+            ? []
+            : List<double>.from(json["latlng"]!.map((x) => x?.toDouble())),
+        landlocked: json["landlocked"],
+        area: json["area"]?.toDouble(),
+        demonyms: json["demonyms"] == null
             ? null
-            : CurrentPresident.fromJson(json["current_president"]),
-        currency: json["currency"],
-        phoneCode: json["phone_code"],
-        continent: json["continent"],
-        description: json["description"],
-        size: json["size"],
-        independenceDate: json["independence_date"] == null
-            ? null
-            : DateTime.parse(json["independence_date"]),
-        population: json["population"],
-        href: json["href"] == null ? null : CountryHref.fromJson(json["href"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "full_name": fullName,
-        "capital": capital,
-        "iso2": iso2,
-        "iso3": iso3,
-        "covid19": covid19?.toJson(),
-        "current_president": currentPresident?.toJson(),
-        "currency": currency,
-        "phone_code": phoneCode,
-        "continent": continent,
-        "description": description,
-        "size": size,
-        "independence_date":
-            "${independenceDate!.year.toString().padLeft(4, '0')}-${independenceDate!.month.toString().padLeft(2, '0')}-${independenceDate!.day.toString().padLeft(2, '0')}",
-        "population": population,
-        "href": href?.toJson(),
-      };
-}
-
-class Covid19 {
-  final String? totalCase;
-  final String? totalDeaths;
-  final DateTime? lastUpdated;
-
-  Covid19({
-    this.totalCase,
-    this.totalDeaths,
-    this.lastUpdated,
-  });
-
-  Covid19 copyWith({
-    String? totalCase,
-    String? totalDeaths,
-    DateTime? lastUpdated,
-  }) =>
-      Covid19(
-        totalCase: totalCase ?? this.totalCase,
-        totalDeaths: totalDeaths ?? this.totalDeaths,
-        lastUpdated: lastUpdated ?? this.lastUpdated,
-      );
-
-  factory Covid19.fromRawJson(String str) => Covid19.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory Covid19.fromJson(Map<String, dynamic> json) => Covid19(
-        totalCase: json["total_case"],
-        totalDeaths: json["total_deaths"],
-        lastUpdated: json["last_updated"] == null
-            ? null
-            : DateTime.parse(json["last_updated"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "total_case": totalCase,
-        "total_deaths": totalDeaths,
-        "last_updated": lastUpdated?.toIso8601String(),
-      };
-}
-
-class CurrentPresident {
-  final String? name;
-  final String? gender;
-  final DateTime? appointmentStartDate;
-  final dynamic appointmentEndDate;
-  final CurrentPresidentHref? href;
-
-  CurrentPresident({
-    this.name,
-    this.gender,
-    this.appointmentStartDate,
-    this.appointmentEndDate,
-    this.href,
-  });
-
-  CurrentPresident copyWith({
-    String? name,
-    String? gender,
-    DateTime? appointmentStartDate,
-    dynamic appointmentEndDate,
-    CurrentPresidentHref? href,
-  }) =>
-      CurrentPresident(
-        name: name ?? this.name,
-        gender: gender ?? this.gender,
-        appointmentStartDate: appointmentStartDate ?? this.appointmentStartDate,
-        appointmentEndDate: appointmentEndDate ?? this.appointmentEndDate,
-        href: href ?? this.href,
-      );
-
-  factory CurrentPresident.fromRawJson(String str) =>
-      CurrentPresident.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory CurrentPresident.fromJson(Map<String, dynamic> json) =>
-      CurrentPresident(
-        name: json["name"],
-        gender: json["gender"],
-        appointmentStartDate: json["appointment_start_date"] == null
-            ? null
-            : DateTime.parse(json["appointment_start_date"]),
-        appointmentEndDate: json["appointment_end_date"],
-        href: json["href"] == null
-            ? null
-            : CurrentPresidentHref.fromJson(json["href"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "gender": gender,
-        "appointment_start_date":
-            "${appointmentStartDate!.year.toString().padLeft(4, '0')}-${appointmentStartDate!.month.toString().padLeft(2, '0')}-${appointmentStartDate!.day.toString().padLeft(2, '0')}",
-        "appointment_end_date": appointmentEndDate,
-        "href": href?.toJson(),
-      };
-}
-
-class CurrentPresidentHref {
-  final String? self;
-  final String? country;
-  final String? picture;
-
-  CurrentPresidentHref({
-    this.self,
-    this.country,
-    this.picture,
-  });
-
-  CurrentPresidentHref copyWith({
-    String? self,
-    String? country,
-    String? picture,
-  }) =>
-      CurrentPresidentHref(
-        self: self ?? this.self,
-        country: country ?? this.country,
-        picture: picture ?? this.picture,
-      );
-
-  factory CurrentPresidentHref.fromRawJson(String str) =>
-      CurrentPresidentHref.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory CurrentPresidentHref.fromJson(Map<String, dynamic> json) =>
-      CurrentPresidentHref(
-        self: json["self"],
-        country: json["country"],
-        picture: json["picture"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "self": self,
-        "country": country,
-        "picture": picture,
-      };
-}
-
-class CountryHref {
-  final String? self;
-  final String? states;
-  final String? presidents;
-  final String? flag;
-
-  CountryHref({
-    this.self,
-    this.states,
-    this.presidents,
-    this.flag,
-  });
-
-  CountryHref copyWith({
-    String? self,
-    String? states,
-    String? presidents,
-    String? flag,
-  }) =>
-      CountryHref(
-        self: self ?? this.self,
-        states: states ?? this.states,
-        presidents: presidents ?? this.presidents,
-        flag: flag ?? this.flag,
-      );
-
-  factory CountryHref.fromRawJson(String str) =>
-      CountryHref.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory CountryHref.fromJson(Map<String, dynamic> json) => CountryHref(
-        self: json["self"],
-        states: json["states"],
-        presidents: json["presidents"],
+            : Demonyms.fromJson(json["demonyms"]),
         flag: json["flag"],
+        maps: json["maps"] == null ? null : Maps.fromJson(json["maps"]),
+        population: json["population"],
+        car: json["car"] == null ? null : Car.fromJson(json["car"]),
+        timezones: json["timezones"] == null
+            ? []
+            : List<String>.from(json["timezones"]!.map((x) => x)),
+        continents: json["continents"] == null
+            ? []
+            : List<String>.from(json["continents"]!.map((x) => x)),
+        flags: json["flags"] == null ? null : Flags.fromJson(json["flags"]),
+        coatOfArms: json["coatOfArms"] == null
+            ? null
+            : CoatOfArms.fromJson(json["coatOfArms"]),
+        startOfWeek: json["startOfWeek"],
+        capitalInfo: json["capitalInfo"] == null
+            ? null
+            : CapitalInfo.fromJson(json["capitalInfo"]),
+        cioc: json["cioc"],
+        subregion: json["subregion"],
+        fifa: json["fifa"],
+        borders: json["borders"] == null
+            ? []
+            : List<String>.from(json["borders"]!.map((x) => x)),
+        gini: Map.from(json["gini"]!)
+            .map((k, v) => MapEntry<String, double>(k, v?.toDouble())),
+        postalCode: json["postalCode"] == null
+            ? null
+            : PostalCode.fromJson(json["postalCode"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "self": self,
-        "states": states,
-        "presidents": presidents,
+        "name": name?.toJson(),
+        "tld": tld == null ? [] : List<dynamic>.from(tld!.map((x) => x)),
+        "cca2": cca2,
+        "ccn3": ccn3,
+        "cca3": cca3,
+        "independent": independent,
+        "status": status,
+        "unMember": unMember,
+        "currencies": Map.from(currencies!)
+            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "idd": idd?.toJson(),
+        "capital":
+            capital == null ? [] : List<dynamic>.from(capital!.map((x) => x)),
+        "altSpellings": altSpellings == null
+            ? []
+            : List<dynamic>.from(altSpellings!.map((x) => x)),
+        "region": region,
+        "languages":
+            Map.from(languages!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+        "translations": Map.from(translations!)
+            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "latlng":
+            latlng == null ? [] : List<dynamic>.from(latlng!.map((x) => x)),
+        "landlocked": landlocked,
+        "area": area,
+        "demonyms": demonyms?.toJson(),
         "flag": flag,
+        "maps": maps?.toJson(),
+        "population": population,
+        "car": car?.toJson(),
+        "timezones": timezones == null
+            ? []
+            : List<dynamic>.from(timezones!.map((x) => x)),
+        "continents": continents == null
+            ? []
+            : List<dynamic>.from(continents!.map((x) => x)),
+        "flags": flags?.toJson(),
+        "coatOfArms": coatOfArms?.toJson(),
+        "startOfWeek": startOfWeek,
+        "capitalInfo": capitalInfo?.toJson(),
+        "cioc": cioc,
+        "subregion": subregion,
+        "fifa": fifa,
+        "borders":
+            borders == null ? [] : List<dynamic>.from(borders!.map((x) => x)),
+        "gini": Map.from(gini!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+        "postalCode": postalCode?.toJson(),
       };
 }
 
-class Links {
-  final String? first;
-  final String? last;
-  final dynamic prev;
-  final dynamic next;
+class CapitalInfo {
+  final List<double>? latlng;
 
-  Links({
-    this.first,
-    this.last,
-    this.prev,
-    this.next,
+  CapitalInfo({
+    this.latlng,
   });
 
-  Links copyWith({
-    String? first,
-    String? last,
-    dynamic prev,
-    dynamic next,
+  CapitalInfo copyWith({
+    List<double>? latlng,
   }) =>
-      Links(
-        first: first ?? this.first,
-        last: last ?? this.last,
-        prev: prev ?? this.prev,
-        next: next ?? this.next,
+      CapitalInfo(
+        latlng: latlng ?? this.latlng,
       );
 
-  factory Links.fromRawJson(String str) => Links.fromJson(json.decode(str));
+  factory CapitalInfo.fromRawJson(String str) =>
+      CapitalInfo.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        first: json["first"],
-        last: json["last"],
-        prev: json["prev"],
-        next: json["next"],
+  factory CapitalInfo.fromJson(Map<String, dynamic> json) => CapitalInfo(
+        latlng: json["latlng"] == null
+            ? []
+            : List<double>.from(json["latlng"]!.map((x) => x?.toDouble())),
       );
 
   Map<String, dynamic> toJson() => {
-        "first": first,
-        "last": last,
-        "prev": prev,
-        "next": next,
+        "latlng":
+            latlng == null ? [] : List<dynamic>.from(latlng!.map((x) => x)),
       };
 }
 
-class Meta {
-  final int? currentPage;
-  final int? from;
-  final int? lastPage;
-  final String? path;
-  final int? perPage;
-  final int? to;
-  final int? total;
+class Car {
+  final List<String>? signs;
+  final String? side;
 
-  Meta({
-    this.currentPage,
-    this.from,
-    this.lastPage,
-    this.path,
-    this.perPage,
-    this.to,
-    this.total,
+  Car({
+    this.signs,
+    this.side,
   });
 
-  Meta copyWith({
-    int? currentPage,
-    int? from,
-    int? lastPage,
-    String? path,
-    int? perPage,
-    int? to,
-    int? total,
+  Car copyWith({
+    List<String>? signs,
+    String? side,
   }) =>
-      Meta(
-        currentPage: currentPage ?? this.currentPage,
-        from: from ?? this.from,
-        lastPage: lastPage ?? this.lastPage,
-        path: path ?? this.path,
-        perPage: perPage ?? this.perPage,
-        to: to ?? this.to,
-        total: total ?? this.total,
+      Car(
+        signs: signs ?? this.signs,
+        side: side ?? this.side,
       );
 
-  factory Meta.fromRawJson(String str) => Meta.fromJson(json.decode(str));
+  factory Car.fromRawJson(String str) => Car.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Meta.fromJson(Map<String, dynamic> json) => Meta(
-        currentPage: json["current_page"],
-        from: json["from"],
-        lastPage: json["last_page"],
-        path: json["path"],
-        perPage: json["per_page"],
-        to: json["to"],
-        total: json["total"],
+  factory Car.fromJson(Map<String, dynamic> json) => Car(
+        signs: json["signs"] == null
+            ? []
+            : List<String>.from(json["signs"]!.map((x) => x)),
+        side: json["side"],
       );
 
   Map<String, dynamic> toJson() => {
-        "current_page": currentPage,
-        "from": from,
-        "last_page": lastPage,
-        "path": path,
-        "per_page": perPage,
-        "to": to,
-        "total": total,
+        "signs": signs == null ? [] : List<dynamic>.from(signs!.map((x) => x)),
+        "side": side,
+      };
+}
+
+class CoatOfArms {
+  final String? png;
+  final String? svg;
+
+  CoatOfArms({
+    this.png,
+    this.svg,
+  });
+
+  CoatOfArms copyWith({
+    String? png,
+    String? svg,
+  }) =>
+      CoatOfArms(
+        png: png ?? this.png,
+        svg: svg ?? this.svg,
+      );
+
+  factory CoatOfArms.fromRawJson(String str) =>
+      CoatOfArms.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory CoatOfArms.fromJson(Map<String, dynamic> json) => CoatOfArms(
+        png: json["png"],
+        svg: json["svg"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "png": png,
+        "svg": svg,
+      };
+}
+
+class Currency {
+  final String? name;
+  final String? symbol;
+
+  Currency({
+    this.name,
+    this.symbol,
+  });
+
+  Currency copyWith({
+    String? name,
+    String? symbol,
+  }) =>
+      Currency(
+        name: name ?? this.name,
+        symbol: symbol ?? this.symbol,
+      );
+
+  factory Currency.fromRawJson(String str) =>
+      Currency.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Currency.fromJson(Map<String, dynamic> json) => Currency(
+        name: json["name"],
+        symbol: json["symbol"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "symbol": symbol,
+      };
+}
+
+class Demonyms {
+  final Eng? eng;
+  final Eng? fra;
+
+  Demonyms({
+    this.eng,
+    this.fra,
+  });
+
+  Demonyms copyWith({
+    Eng? eng,
+    Eng? fra,
+  }) =>
+      Demonyms(
+        eng: eng ?? this.eng,
+        fra: fra ?? this.fra,
+      );
+
+  factory Demonyms.fromRawJson(String str) =>
+      Demonyms.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Demonyms.fromJson(Map<String, dynamic> json) => Demonyms(
+        eng: json["eng"] == null ? null : Eng.fromJson(json["eng"]),
+        fra: json["fra"] == null ? null : Eng.fromJson(json["fra"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "eng": eng?.toJson(),
+        "fra": fra?.toJson(),
+      };
+}
+
+class Eng {
+  final String? f;
+  final String? m;
+
+  Eng({
+    this.f,
+    this.m,
+  });
+
+  Eng copyWith({
+    String? f,
+    String? m,
+  }) =>
+      Eng(
+        f: f ?? this.f,
+        m: m ?? this.m,
+      );
+
+  factory Eng.fromRawJson(String str) => Eng.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Eng.fromJson(Map<String, dynamic> json) => Eng(
+        f: json["f"],
+        m: json["m"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "f": f,
+        "m": m,
+      };
+}
+
+class Flags {
+  final String? png;
+  final String? svg;
+  final String? alt;
+
+  Flags({
+    this.png,
+    this.svg,
+    this.alt,
+  });
+
+  Flags copyWith({
+    String? png,
+    String? svg,
+    String? alt,
+  }) =>
+      Flags(
+        png: png ?? this.png,
+        svg: svg ?? this.svg,
+        alt: alt ?? this.alt,
+      );
+
+  factory Flags.fromRawJson(String str) => Flags.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Flags.fromJson(Map<String, dynamic> json) => Flags(
+        png: json["png"],
+        svg: json["svg"],
+        alt: json["alt"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "png": png,
+        "svg": svg,
+        "alt": alt,
+      };
+}
+
+class Idd {
+  final String? root;
+  final List<String>? suffixes;
+
+  Idd({
+    this.root,
+    this.suffixes,
+  });
+
+  Idd copyWith({
+    String? root,
+    List<String>? suffixes,
+  }) =>
+      Idd(
+        root: root ?? this.root,
+        suffixes: suffixes ?? this.suffixes,
+      );
+
+  factory Idd.fromRawJson(String str) => Idd.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Idd.fromJson(Map<String, dynamic> json) => Idd(
+        root: json["root"],
+        suffixes: json["suffixes"] == null
+            ? []
+            : List<String>.from(json["suffixes"]!.map((x) => x)),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "root": root,
+        "suffixes":
+            suffixes == null ? [] : List<dynamic>.from(suffixes!.map((x) => x)),
+      };
+}
+
+class Maps {
+  final String? googleMaps;
+  final String? openStreetMaps;
+
+  Maps({
+    this.googleMaps,
+    this.openStreetMaps,
+  });
+
+  Maps copyWith({
+    String? googleMaps,
+    String? openStreetMaps,
+  }) =>
+      Maps(
+        googleMaps: googleMaps ?? this.googleMaps,
+        openStreetMaps: openStreetMaps ?? this.openStreetMaps,
+      );
+
+  factory Maps.fromRawJson(String str) => Maps.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Maps.fromJson(Map<String, dynamic> json) => Maps(
+        googleMaps: json["googleMaps"],
+        openStreetMaps: json["openStreetMaps"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "googleMaps": googleMaps,
+        "openStreetMaps": openStreetMaps,
+      };
+}
+
+class Name {
+  final String? common;
+  final String? official;
+  final Map<String, Translation>? nativeName;
+
+  Name({
+    this.common,
+    this.official,
+    this.nativeName,
+  });
+
+  Name copyWith({
+    String? common,
+    String? official,
+    Map<String, Translation>? nativeName,
+  }) =>
+      Name(
+        common: common ?? this.common,
+        official: official ?? this.official,
+        nativeName: nativeName ?? this.nativeName,
+      );
+
+  factory Name.fromRawJson(String str) => Name.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Name.fromJson(Map<String, dynamic> json) => Name(
+        common: json["common"],
+        official: json["official"],
+        nativeName: Map.from(json["nativeName"]!).map((k, v) =>
+            MapEntry<String, Translation>(k, Translation.fromJson(v))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "common": common,
+        "official": official,
+        "nativeName": Map.from(nativeName!)
+            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+      };
+}
+
+class Translation {
+  final String? official;
+  final String? common;
+
+  Translation({
+    this.official,
+    this.common,
+  });
+
+  Translation copyWith({
+    String? official,
+    String? common,
+  }) =>
+      Translation(
+        official: official ?? this.official,
+        common: common ?? this.common,
+      );
+
+  factory Translation.fromRawJson(String str) =>
+      Translation.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Translation.fromJson(Map<String, dynamic> json) => Translation(
+        official: json["official"],
+        common: json["common"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "official": official,
+        "common": common,
+      };
+}
+
+class PostalCode {
+  final String? format;
+  final String? regex;
+
+  PostalCode({
+    this.format,
+    this.regex,
+  });
+
+  PostalCode copyWith({
+    String? format,
+    String? regex,
+  }) =>
+      PostalCode(
+        format: format ?? this.format,
+        regex: regex ?? this.regex,
+      );
+
+  factory PostalCode.fromRawJson(String str) =>
+      PostalCode.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory PostalCode.fromJson(Map<String, dynamic> json) => PostalCode(
+        format: json["format"],
+        regex: json["regex"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "format": format,
+        "regex": regex,
       };
 }
